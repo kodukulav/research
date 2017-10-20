@@ -1,0 +1,30 @@
+        
+function result = mean_fig ( RGB, RGBin_unique, RGB_mean, RGB_figPath, hot_temp, cold_temp, LED_setting )
+    
+    
+    figure('visible', 'off');
+    hold on;
+    title( strcat(RGB,' Channel Mean(',hot_temp,' C) vs. input pixel brightness(',cold_temp,' C) LED setting=',string(LED_setting)) );
+   
+    xlabel(strcat('Input Image Pixel brightness(',cold_temp,'C)') );
+    ylabel(strcat('Mean of Output Image Pixels(' ,hot_temp, 'C)') );
+        
+    markerStr = strcat(lower(RGB),'*');
+       
+    axis([0 255 0 255]);
+    axis square;
+    %Rmeanfit = fit(double(Rin_unique(find(Rmean < 255))),Rmean(find(Rmean < 255))','poly1');
+%       plot(f, Rin_unique(find(Rmean < 255)),Rmean(find(Rmean < 255))', markerStr);
+    
+    RGBin_unique_col   = RGBin_unique'; %x
+    RGB_mean_col       = RGB_mean';     %y
+    RGB_mean_fit       = fit ( RGBin_unique_col, RGB_mean_col
+    plot(RGBin_unique_col, RGB_mean_col,'r*', RGBin_large_col, RGB_mean_large_col);
+    
+    
+%     plot(RGBin_unique,RGB_mean, markerStr);
+    saveas(gcf,RGB_figPath);
+    hold off;
+    result = 1;
+end
+    
